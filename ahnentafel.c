@@ -38,15 +38,16 @@ int  printMenu(){
 	char num[2];
 	char *end;
 	if(fgets(num, 2, stdin)){
-                                char *p;
-                                if(p=strchr(num, '\n')){//check exist newline
-                                        *p = 0;
-                                } else {
-                                        scanf("%*[^\n]");scanf("%*c");//clear upto newline
-                                }
+        	char *c;
+                if((c = strchr(num, '\n'))){			//check for newline
+                	*c = 0;					//assign newline to 0
+                } else {
+                        scanf("%*[^\n]");
+			scanf("%*c");//clear upto newline
                 }
-
-                int imp = strtol(num, &end, 10);
+	}
+	
+        int imp = strtol(num, &end, 10);
 	return imp;
 }
 
@@ -205,7 +206,7 @@ void case4(char gen[]){
         int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
 
        	int true =0;
-        for(int i =0;i< strlen(strBin); i++){
+        for(unsigned int i =0;i< strlen(strBin); i++){
         	if( strBin[i] == '0'|| strBin[i] == '1')
 			true = 0;
                 else {
@@ -232,7 +233,7 @@ void case5(void){
 
         if(fgets(base10, 3, stdin)){
         	char *p;
-                if(p=strchr(base10, '\n')){//check exist newline
+                if((p=strchr(base10, '\n'))){//check exist newline
                         *p = 0;
                 } else {
                       	scanf("%*[^\n]");scanf("%*c");//clear upto newline
@@ -247,7 +248,7 @@ void case5(void){
 
                 if(fgets(base10, 3, stdin)){
                 	char *p;
-                        if(p=strchr(base10, '\n')){//check exist newline
+                        if((p=strchr(base10, '\n'))){//check exist newline
                         	*p = 0;
                                 } else {
 	                                scanf("%*[^\n]");scanf("%*c");//clear upto newline                                        }
@@ -258,26 +259,17 @@ void case5(void){
 	}                
 		
 	printf("\n Printing %i generations back: \n", intB10);
-        int chrom[233];
-	chrom[0] = 1;
 	int max = power(2, intB10+1);
-	//printf( " max : %i\n", max);
-	
 	char binary[32];
-	
 	int length =0;
 	int check =0;
-	int index=1;
 	int ok;
 	for( int i =1; i < max; i++){					//goes through all the numbers possible in the generations
 		length = toBinaryStr(i, binary);
-		//printf("\n binary: %s", binary);
-		//printf("\n");
 		check =0;
 		for (int j =0; j< length; j++){				//goes though the binary array
 			if(binary[j] =='0' && binary[j+1]=='0'){	//checks if there are two 0's next to eachother
 				check++;
-				//printf(" two 0 ");
 			}
 		}
 		if (check==0) {
@@ -297,7 +289,7 @@ void case5(void){
 // bin: a charachter array of 0's and 1's representing a binary number
 void case3(char bin[]){
         int true =1;
-	for(int i =0;i< strlen(bin)-1; i++){
+	for(unsigned int i =0; i< strlen(bin)-1; i++){
         	if( bin[i] == '0' || bin[i] == '1')
                 	true = 0;
                 else{
