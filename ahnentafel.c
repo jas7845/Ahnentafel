@@ -100,7 +100,9 @@ int  getRelation(int length, int bin[], char str[]){
 }
 
 // Function to convert base10 int to an integer array representing a binary number
-// base10: the 
+// base10: the integer in base 10
+// binary: the array that will get the binary number
+// return: length of the binary array
 int toBinary(int base10, int binary[]){
 	int len =0;				//length of the binary array
 	int revBin[32];
@@ -118,6 +120,10 @@ int toBinary(int base10, int binary[]){
 	return len;
 }
 
+// Function to convert base10 int to a string array representing a binary number
+// base10: the integer in base 10
+// binary: the array that will get the binary number
+// return: length of the binary array
 int toBinaryStr(int base10, char  binary[]){
         int len =0;                             //length of the binary array
         int revBin[32];
@@ -138,6 +144,10 @@ int toBinaryStr(int base10, char  binary[]){
         return len;
 }
 
+// Function to convert string of "mother" / "father" into a binary string
+// str: the string to be converted to binary
+// binary: the string of 0's and 1's representing a binary number
+// return: int, the number of generations
 int strtoBin(char str[], char binary[]){
 	int gen =0;
 	
@@ -175,23 +185,22 @@ int strtoBin(char str[], char binary[]){
 		else if (strcmp(it, self) == 0)
                         binary[0]='1';
 		else{	
-			binary[count] = '3';		//error checking
+			binary[count] = '3';		//used for error checking
 		}
 		gen++;
 		count++;	
 	}
-
 	binary[count] = '\0';
 	return gen;
-
-
 }
 
-
+// Function for the entirety of case 4:
+// 	converts the string to binary and prints it
+// 	converts the binary to base10 and prints it
+//	and prints the generations back
+// gen: string of family relation
 void case4(char gen[]){
-	//printf("Enter family relation (e.g.) \"father's mother\": ");
-        //char gen[350];
-        //fgets(gen, 350, stdin);
+	
         char strBin[32];
         int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
 
@@ -213,7 +222,9 @@ void case4(char gen[]){
        }
 }
 
-
+// Function for the entirety of case 5:
+// 	checks if the number of generations back is accepatble
+// 	prints out the ahnentafel numbers for femal chromosome inheritence	
 void case5(void){
 	char *end;
 	char base10[3];
@@ -278,6 +289,12 @@ void case5(void){
 	}
 }
 
+// Function for entirety of case 3:
+// 	error checks to make sure the imput is binary
+//	converts binary to base 10 and prints out the base10 value
+//	get's the family relation and prints it
+//	prints the number of generations back
+// bin: a charachter array of 0's and 1's representing a binary number
 void case3(char bin[]){
         int true =1;
 	for(int i =0;i< strlen(bin)-1; i++){
@@ -303,6 +320,11 @@ void case3(char bin[]){
         }
 }
 
+//Function for the entirety of case 2:
+//	converts base 10 to binary and prints it
+//	gets the family relation and prints it
+//	prints the number of generations
+// base10: the base10 value entered to covert to binary 
 void case2(char base10[]){
 	char *end;
 	int binary[32];
@@ -320,7 +342,11 @@ void case2(char base10[]){
 	printf("\ngenerations back: %i\n", gen);
 }
 
-
+// Main function that checks how many command line arguments there are
+// 	and prints out a menu or processes the commcand line argumaents
+// argc: number of command line arguments
+// argv: the command line arguments
+// returns: exit_sucess
 int main(int argc, char **argv){
 
 	if(argc == 1){
@@ -368,7 +394,6 @@ int main(int argc, char **argv){
 	else {
 		char enter[350];
 		strcpy(enter, argv[1]);
-		printf(" %s ", enter);
 		if (enter[strlen(enter)-1] =='b'){
 			case3(enter);
 		}
@@ -382,5 +407,5 @@ int main(int argc, char **argv){
 		else case2(enter);
 	}
 
-	return 0;
+	return EXIT_SUCCESS;
 }
