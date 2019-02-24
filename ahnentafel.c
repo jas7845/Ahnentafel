@@ -1,7 +1,21 @@
+// 
+// File: ahnentafel.c 
+// 
+// @author Julie Sojkowski
+// 
+// Purpose: user either enters command line arguments or uses the menu 
+// 		to select which option they would like, program then 
+// 		fulfulls the option
+//
+// // // // // // // // // // // // // // // // // // // // // // // // 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// Function to calcualte the power of two integers
+// base: the base integer
+// exp: the exponent
+// returns: the base number to the power of the exponent
 int power( int base, int exp){
 
         int ret = 1;
@@ -12,7 +26,8 @@ int power( int base, int exp){
 
 
 }
-
+// Function to print the menu and take in an integer for the option
+// returns: the integer that the user imput as the option
 int  printMenu(){
 	printf("\n1) description\n");
 	printf("2) ahnentafel number (base 10)\n");
@@ -35,10 +50,16 @@ int  printMenu(){
 	return imp;
 }
 
+// Function to print the description for case 1
 void prDescription(){
 	printf("\nThe ahnentafel number is used to determine the relation between an individual and each of his/her direct ancestors.\n");
 }
 
+// Function to make the string version of the realtion
+// length: legth of the binary array
+// bin: the binary number represented as an array of integers
+// str: the string that will contain the relation
+// returns: the number of generations
 int  getRelation(int length, int bin[], char str[]){
 	
 	char mom[] = "mother";
@@ -50,6 +71,7 @@ int  getRelation(int length, int bin[], char str[]){
 		strcpy(str, "none");
 		return gen;
 	}
+	
 	if( bin[1] == 1){
                 strcpy(str, moms);
         	gen++;
@@ -77,6 +99,8 @@ int  getRelation(int length, int bin[], char str[]){
 	return gen;
 }
 
+// Function to convert base10 int to an integer array representing a binary number
+// base10: the 
 int toBinary(int base10, int binary[]){
 	int len =0;				//length of the binary array
 	int revBin[32];
@@ -164,10 +188,10 @@ int strtoBin(char str[], char binary[]){
 }
 
 
-void case4(){
-	printf("Enter family relation (e.g.) \"father's mother\": ");
-        char gen[350];
-        fgets(gen, 350, stdin);
+void case4(char gen[]){
+	//printf("Enter family relation (e.g.) \"father's mother\": ");
+        //char gen[350];
+        //fgets(gen, 350, stdin);
         char strBin[32];
         int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
 
@@ -206,7 +230,7 @@ void case5(void){
 
 	int intB10 = strtol(base10, &end, 10);
 
-        while (intB10<0 ||intB10 >9){
+        while (intB10<0 || intB10 >9){
         	fprintf(stderr, "Invalid input, number of generations must be between 0 and 9!");
                 printf("\nNumber of generations back: ");
 
@@ -254,12 +278,7 @@ void case5(void){
 	}
 }
 
-void case3(){
-	char bin[32];
-        printf("\nEnter the ahnentafel number in binary: ");
-
-        fgets(bin, 32, stdin);
-
+void case3(char bin[]){
         int true =1;
 	for(int i =0;i< strlen(bin)-1; i++){
         	if( bin[i] == '0' || bin[i] == '1')
@@ -280,18 +299,13 @@ void case3(){
                 char relation[350];
                	int gen =getRelation(len, binary,relation);
                 printf("\nfamily relation: %s", relation);
-                printf("\ngenerations back: %i", gen);
+                printf("\ngenerations back: %i\n", gen);
         }
 }
 
-void case2(){
+void case2(char base10[]){
 	char *end;
 	int binary[32];
-	char base10[30];
-        printf("\nEnter the ahnentafel number in base-10: ");
-
-       	fgets(base10, 30, stdin);
-
 	int intB10 = strtol(base10, &end, 10);
         int len = toBinary(intB10, binary);
 	printf("\nahnentafel number in binary: ");
@@ -318,13 +332,24 @@ int main(int argc, char **argv){
 				prDescription();
 		
 			else if (imp == 2){
-				case2();
+				char base10[30];
+				printf("\nEnter the ahnentafel number in base-10: ");
+        			fgets(base10, 30, stdin);
+				case2(base10);
 			}
 			else if(imp == 3){
-				case3();
+				char bin[32];
+        			printf("\nEnter the ahnentafel number in binary: ");
+        			fgets(bin, 32, stdin);
+				case3(bin);
 			}
 
-			else if(imp ==4) case4();
+			else if(imp ==4){
+			        printf("Enter family relation (e.g.) \"father's mother\": ");
+			        char gen[350];
+        			fgets(gen, 350, stdin);
+				case4(gen);
+			}
 
 			else if(imp ==5){
 				case5();
@@ -338,6 +363,23 @@ int main(int argc, char **argv){
 			else fprintf(stderr, "\nUnknown operation!\n");
 			imp = printMenu();
          	}			
+	}
+
+	else {
+		char enter[350];
+		strcpy(enter, argv[1]);
+		printf(" %s ", enter);
+		if (enter[strlen(enter)-1] =='b'){
+			case3(enter);
+		}
+		else if(enter[0] == 'm' || enter[0] =='f'){
+			for( int i =2; i< argc; i++){
+				enter[strlen(enter)] = ' ';
+				strcat(enter, argv[i]);
+			}
+			case4(enter);	
+		}
+		else case2(enter);
 	}
 
 	return 0;
