@@ -163,6 +163,33 @@ int strtoBin(char str[], char binary[]){
 
 }
 
+
+void case4(){
+	printf("Enter family relation (e.g.) \"father's mother\": ");
+        char gen[350];
+        fgets(gen, 350, stdin);
+        char strBin[32];
+        int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
+
+       	int true =0;
+        for(int i =0;i< strlen(strBin); i++){
+        	if( strBin[i] == '0'|| strBin[i] == '1')
+			true = 0;
+                else {
+                        fprintf(stderr, "\nInvalid string! \n");
+                        true = 1;
+                	break;
+		}
+        }
+        if (true == 0){
+		printf("\nahnentafel number in binary: %s", strBin);
+        	int B10= (int) strtol(strBin, NULL, 2); //string binary to base 10
+		printf("\nbase-10 value: %i", B10);
+		printf("\ngenerations back: %i\n", generation);
+       }
+}
+
+
 void case5(void){
 	char *end;
 	char base10[3];
@@ -227,104 +254,78 @@ void case5(void){
 	}
 }
 
+void case3(){
+	char bin[32];
+        printf("\nEnter the ahnentafel number in binary: ");
+
+        fgets(bin, 32, stdin);
+
+        int true =1;
+	for(int i =0;i< strlen(bin)-1; i++){
+        	if( bin[i] == '0' || bin[i] == '1')
+                	true = 0;
+                else{
+                        printf("Invalid string!\n");
+                        true = 1;
+                        break;
+                }
+        }
+	int binary[32];
+        if (true == 0){
+    	   	int B10= (int) strtol(bin, NULL, 2);
+                printf("\nbase-10 value: %i", B10);
+
+                int len = toBinary(B10, binary);
+
+                char relation[350];
+               	int gen =getRelation(len, binary,relation);
+                printf("\nfamily relation: %s", relation);
+                printf("\ngenerations back: %i", gen);
+        }
+}
+
+void case2(){
+	char *end;
+	int binary[32];
+	char base10[30];
+        printf("\nEnter the ahnentafel number in base-10: ");
+
+       	fgets(base10, 30, stdin);
+
+	int intB10 = strtol(base10, &end, 10);
+        int len = toBinary(intB10, binary);
+	printf("\nahnentafel number in binary: ");
+	for (int f =0; f<len; f++){
+		printf("%i", binary[f]);
+
+	}
+
+        char strGen[350];
+        int gen = getRelation(len, binary, strGen);
+	printf("\nfamily relation: %s", strGen);
+	printf("\ngenerations back: %i\n", gen);
+}
+
+
 int main(int argc, char **argv){
 
 	if(argc == 1){
-		char num[2]; 
-		char *end;
 		int imp = printMenu();
-		int binary[32];
 		
 		while(imp != 6){
-			
 			
 			if(imp == 1)
 				prDescription();
 		
 			else if (imp == 2){
-			
-				char base10[30];
-				printf("\nEnter the ahnentafel number in base-10: ");
-
-				fgets(base10, 30, stdin);
-
-				int intB10 = strtol(base10, &end, 10);
-				int len = toBinary(intB10, binary);
-
-				printf("\nahnentafel number in binary: ");
-				for(int c=0; c<len; c++){
-         		       		printf("%i", binary[c]);
-       			 	}
-			
-				char strGen[350];
-				int gen = getRelation(len, binary, strGen);
-		        	printf("\nfamily relation: %s", strGen);
-				printf("\ngenerations back: %i\n", gen);
-
+				case2();
 			}
 			else if(imp == 3){
-			
-				char bin[32];
-                        	printf("\nEnter the ahnentafel number in binary: ");
-                        	
-				fgets(bin, 32, stdin);
-
-				int true =1;
-				for(int i =0;i< strlen(bin)-1; i++){
-					if( bin[i] == '0' || bin[i] == '1')
-						true = 0;
-					else{
-						printf("Invalid string!\n");
-						true = 1;
-						break;
-					}
-					
-				}
-				if (true == 0){ 
-					int B10= (int) strtol(bin, NULL, 2);
-					printf("\nbase-10 value: %i", B10);
-			
-					int len = toBinary(B10, binary);
-
-                        		char strGen[350];
-                        		int gen = getRelation(len, binary, strGen);
-                        		printf("\nfamily relation: %s", strGen);
-                        		printf("\ngenerations back: %i\n", gen);	
-				}
+				case3();
 			}
-			
-			else if(imp ==4){
-				printf("Enter family relation (e.g.) \"father's mother\": ");
-				char gen[350];
-				fgets(gen, 350, stdin);
-				char strBin[32];
-				int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
-				
-				//printf("\ngenerations back: %i, bin: %s. ", generation, strBin);
 
-				int true =0;
-                                for(int i =0;i< strlen(strBin); i++){
-                                        if( strBin[i] == '0')
-                                               true = 0;
-                                        else if( strBin[i] == '1')
-                                                true = 0;
-                                        else if (strBin[i] == '3'){
-                                                fprintf(stderr, "\nInvalid string! \n");
-                                                true = 1;
-                                                break;
-                                        }
+			else if(imp ==4) case4();
 
-                                }
-                                if (true == 0){
-					
-					printf("\nahnentafel number in binary: %s", strBin);
-					int B10= (int) strtol(strBin, NULL, 2); //string binary to base 10
-                                	printf("\nbase-10 value: %i", B10);
-					printf("\ngenerations back: %i\n", generation);
-				
-
-				}
-			}
 			else if(imp ==5){
 				case5();
 			}
@@ -335,11 +336,8 @@ int main(int argc, char **argv){
 			}
 				
 			else fprintf(stderr, "\nUnknown operation!\n");
-		
-
 			imp = printMenu();
-                	
-		}			
+         	}			
 	}
 
 	return 0;
