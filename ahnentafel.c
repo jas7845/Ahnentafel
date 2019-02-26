@@ -35,9 +35,9 @@ int  printMenu(){
 	printf("4) relation (e.g. mother's mother's father)\n");
 	printf("5) female X chromosome inheritance\n");
 	printf("6) exit\n");
-	char num[2];
+	char num[4];
 	char *end;
-	if(fgets(num, 2, stdin)){
+	if(fgets(num, 4, stdin)){
         	char *c;
                 if((c = strchr(num, '\n'))){			//check for newline
                 	*c = 0;					//assign newline to 0
