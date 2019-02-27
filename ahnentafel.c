@@ -53,7 +53,8 @@ int  printMenu(){
 
 // Function to print the description for case 1
 void prDescription(){
-	printf("\nThe ahnentafel number is used to determine the relation between an individual and each of his/her direct ancestors.\n");
+	printf("\nThe ahnentafel number is used to determine the relation\n");
+       	printf("between an individual and each of his/her direct ancestors.\n");
 }
 
 // Function to make the string version of the realtion
