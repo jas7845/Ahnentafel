@@ -129,7 +129,7 @@ int toBinary(int base10, int binary[]){
 // return: length of the binary array
 int toBinaryStr(int base10, char  binary[]){
         int len =0;	//length of the binary array
-        int numlen = 32;
+	int numlen = 32;
 	int revBin[numlen];
         while(base10>0){
                 revBin[len] = base10 % 2;
@@ -290,9 +290,9 @@ void case5(void){
 //	prints the number of generations back
 // bin: a charachter array of 0's and 1's representing a binary number
 void case3(char bin[]){
+        int true =1;
 	int numlen = 32;
         int charlen = 350;
-        int true =1;
 	for(unsigned int i =0; i< strlen(bin)-1; i++){
         	if( bin[i] == '0' || bin[i] == '1')
                 	true = 0;
@@ -322,9 +322,9 @@ void case3(char bin[]){
 //	prints the number of generations
 // base10: the base10 value entered to covert to binary 
 void case2(char base10[]){
+	char *end;
 	int numlen = 32;
         int charlen = 350;
-	char *end;
 	int binary[numlen];
 	int intB10 = strtol(base10, &end, 10);
         int len = toBinary(intB10, binary);
@@ -340,6 +340,9 @@ void case2(char base10[]){
 	printf("\ngenerations back: %i\n", gen);
 }
 
+#define numlen 32
+#define charlen 350
+
 // Main function that checks how many command line arguments there are
 // 	and prints out a menu or processes the commcand line argumaents
 // argc: number of command line arguments
@@ -347,8 +350,6 @@ void case2(char base10[]){
 // returns: exit_sucess
 int main(int argc, char **argv){
 
-	int numlen = 32;
-	int charlen = 350;	
 	if(argc == 1){
 		int imp = printMenu();
 		
