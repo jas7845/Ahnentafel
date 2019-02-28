@@ -35,9 +35,10 @@ int  printMenu(){
 	printf("4) relation (e.g. mother's mother's father)\n");
 	printf("5) female X chromosome inheritance\n");
 	printf("6) exit\n");
-	char num[4];
+	int implen= 4;
+	char num[implen];
 	char *end;
-	if(fgets(num, 4, stdin)){
+	if(fgets(num, implen, stdin)){
         	char *c;
                 if((c = strchr(num, '\n'))){			//check for newline
                 	*c = 0;					//assign newline to 0
@@ -97,7 +98,6 @@ int  getRelation(int length, int bin[], char str[]){
                          strcat(str, dads);
 		++gen;
 	}
-
 	return gen;
 }
 
@@ -106,8 +106,9 @@ int  getRelation(int length, int bin[], char str[]){
 // binary: the array that will get the binary number
 // return: length of the binary array
 int toBinary(int base10, int binary[]){
-	int len =0;				//length of the binary array
-	int revBin[32];
+	int len =0;		//length of the binary array
+	int numlen = 32;
+	int revBin[numlen];
 	while(base10>0){
 		revBin[len] = base10 % 2;
 		base10 = base10/2;
@@ -127,8 +128,9 @@ int toBinary(int base10, int binary[]){
 // binary: the array that will get the binary number
 // return: length of the binary array
 int toBinaryStr(int base10, char  binary[]){
-        int len =0;                             //length of the binary array
-        int revBin[32];
+        int len =0;	//length of the binary array
+        int numlen = 32;
+	int revBin[numlen];
         while(base10>0){
                 revBin[len] = base10 % 2;
                 base10 = base10/2;
@@ -152,7 +154,6 @@ int toBinaryStr(int base10, char  binary[]){
 // return: int, the number of generations
 int strtoBin(char str[], char binary[]){
 	int gen =0;
-	
 	char *pch[10];                                   
 	
 	pch[0] = strtok( str, " \n" );                      
@@ -202,8 +203,8 @@ int strtoBin(char str[], char binary[]){
 //	and prints the generations back
 // gen: string of family relation
 void case4(char gen[]){
-	
-        char strBin[32];
+	int numlen = 32;
+        char strBin[numlen];
         int generation = strtoBin(gen, strBin); // string f/m/f's/m's to string binary
 
        	int true =0;
@@ -228,11 +229,13 @@ void case4(char gen[]){
 // 	checks if the number of generations back is accepatble
 // 	prints out the ahnentafel numbers for femal chromosome inheritence	
 void case5(void){
+	int numlen = 32;
 	char *end;
-	char base10[3];
+	int arlen =3;
+	char base10[arlen];
         printf("Number of generations back: ");
 
-        if(fgets(base10, 3, stdin)){
+        if(fgets(base10, arlen, stdin)){
         	char *p;
                 if((p=strchr(base10, '\n'))){//check exist newline
                         *p = 0;
@@ -247,7 +250,7 @@ void case5(void){
         	fprintf(stderr, "Invalid input, number of generations must be between 0 and 9!");
                 printf("\nNumber of generations back: ");
 
-                if(fgets(base10, 3, stdin)){
+                if(fgets(base10, arlen, stdin)){
                 	char *p;
                         if((p=strchr(base10, '\n'))){//check exist newline
                         	*p = 0;
@@ -261,7 +264,7 @@ void case5(void){
 		
 	printf("\n Printing %i generations back: \n", intB10);
 	int max = power(2, intB10+1);
-	char binary[32];
+	char binary[numlen];
 	int length =0;
 	int check =0;
 	int ok;
@@ -277,8 +280,6 @@ void case5(void){
 			ok = (int) strtol(binary, NULL, 2);
 			printf(" %i, ", ok);
 		}
-	
-		
 	}
 }
 
@@ -289,6 +290,8 @@ void case5(void){
 //	prints the number of generations back
 // bin: a charachter array of 0's and 1's representing a binary number
 void case3(char bin[]){
+	int numlen = 32;
+        int charlen = 350;
         int true =1;
 	for(unsigned int i =0; i< strlen(bin)-1; i++){
         	if( bin[i] == '0' || bin[i] == '1')
@@ -299,14 +302,14 @@ void case3(char bin[]){
                         break;
                 }
         }
-	int binary[32];
+	int binary[numlen];
         if (true == 0){
     	   	int B10= (int) strtol(bin, NULL, 2);
                 printf("\nbase-10 value: %i", B10);
 
                 int len = toBinary(B10, binary);
 
-                char relation[350];
+                char relation[charlen];
                	int gen =getRelation(len, binary,relation);
                 printf("\nfamily relation: %s", relation);
                 printf("\ngenerations back: %i\n", gen);
@@ -319,8 +322,10 @@ void case3(char bin[]){
 //	prints the number of generations
 // base10: the base10 value entered to covert to binary 
 void case2(char base10[]){
+	int numlen = 32;
+        int charlen = 350;
 	char *end;
-	int binary[32];
+	int binary[numlen];
 	int intB10 = strtol(base10, &end, 10);
         int len = toBinary(intB10, binary);
 	printf("\nahnentafel number in binary: ");
@@ -329,7 +334,7 @@ void case2(char base10[]){
 
 	}
 
-        char strGen[350];
+        char strGen[charlen];
         int gen = getRelation(len, binary, strGen);
 	printf("\nfamily relation: %s", strGen);
 	printf("\ngenerations back: %i\n", gen);
@@ -342,6 +347,8 @@ void case2(char base10[]){
 // returns: exit_sucess
 int main(int argc, char **argv){
 
+	int numlen = 32;
+	int charlen = 350;	
 	if(argc == 1){
 		int imp = printMenu();
 		
@@ -351,22 +358,22 @@ int main(int argc, char **argv){
 				prDescription();
 		
 			else if (imp == 2){
-				char base10[30];
+				char base10[numlen];
 				printf("\nEnter the ahnentafel number in base-10: ");
-        			fgets(base10, 30, stdin);
+        			fgets(base10, numlen, stdin);
 				case2(base10);
 			}
 			else if(imp == 3){
-				char bin[32];
+				char bin[numlen];
         			printf("\nEnter the ahnentafel number in binary: ");
-        			fgets(bin, 32, stdin);
+        			fgets(bin, numlen, stdin);
 				case3(bin);
 			}
 
 			else if(imp ==4){
 			        printf("Enter family relation (e.g.) \"father's mother\": ");
-			        char gen[350];
-        			fgets(gen, 350, stdin);
+			        char gen[charlen];
+        			fgets(gen, charlen, stdin);
 				case4(gen);
 			}
 
@@ -385,7 +392,7 @@ int main(int argc, char **argv){
 	}
 
 	else {
-		char enter[350];
+		char enter[charlen];
 		strcpy(enter, argv[1]);
 		if (enter[strlen(enter)-1] =='b'){
 			case3(enter);
