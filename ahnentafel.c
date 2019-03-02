@@ -54,7 +54,7 @@ int  printMenu(){
 
 // Function to print the description for case 1
 void prDescription(){
-	printf("\nThe ahnentafel number is used to determine the relation\n");
+	printf("The ahnentafel number is used to determine the relation\n");
        	printf("between an individual and each of his/her direct ancestors.\n");
 }
 
@@ -218,7 +218,7 @@ void case4(char gen[]){
 		}
         }
         if (true == 0){
-		printf("\nahnentafel number in binary: %s", strBin);
+		printf("ahnentafel number in binary: %s", strBin);
         	int B10= (int) strtol(strBin, NULL, 2); //string binary to base 10
 		printf("\nbase-10 value: %i", B10);
 		printf("\ngenerations back: %i\n", generation);
@@ -305,7 +305,7 @@ void case3(char bin[]){
 	int binary[numlen];
         if (true == 0){
     	   	int B10= (int) strtol(bin, NULL, 2);
-                printf("\nbase-10 value: %i", B10);
+                printf("base-10 value: %i", B10);
 
                 int len = toBinary(B10, binary);
 
@@ -328,7 +328,7 @@ void case2(char base10[]){
 	int binary[numlen];
 	int intB10 = strtol(base10, &end, 10);
         int len = toBinary(intB10, binary);
-	printf("\nahnentafel number in binary: ");
+	printf("ahnentafel number in binary: ");
 	for (int f =0; f<len; f++){
 		printf("%i", binary[f]);
 
