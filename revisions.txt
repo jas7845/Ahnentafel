@@ -1,0 +1,66 @@
+commit 522d7a7119f1181642541b0bfd1ad9b1e661f14e
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Thu Feb 28 11:45:29 2019 -0500
+
+    Revised
+
+commit baa61ed8b9fe50ac729729f86cc14bdd359fe4ac
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Thu Feb 28 11:30:21 2019 -0500
+
+    Not hardcoding lengths
+
+commit 78a185bd2ff3fd5d50e799bfffc4f8dd28e3e470
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Wed Feb 27 15:48:42 2019 -0500
+
+    Edit description
+
+commit 26457511a6291a3b04addf3b71831519e3a18071
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Tue Feb 26 11:37:28 2019 -0500
+
+    Changed menu input a bit
+
+commit 72edd358f4366fc24245b5bf4a6d1868a8c5a236
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Sun Feb 24 17:25:00 2019 -0500
+
+    No warnings and no commeneted out debugging statements
+
+commit a2f15212e9ff04fc2d42016e9689ceca0bfbf510
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Sun Feb 24 17:00:44 2019 -0500
+
+    With comments
+
+commit 723b736d0d9bcf6f0e07bb6159ccec7bff162c43
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Sun Feb 24 16:19:41 2019 -0500
+
+    Done with command line, need to add comments
+
+commit 62d0da6001fa26a42f8888bdee6b88801c7c1636
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Sun Feb 24 15:15:25 2019 -0500
+
+    Main simplified and all menu items done
+
+commit 0bd70c38a7a1e3a7759f65df0f5ab2639cfcade5
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Sun Feb 24 14:26:53 2019 -0500
+
+    All menu done
+
+commit 7b5a7b71144db30701da194a73a0b2d65cf5c194
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Thu Feb 21 18:01:00 2019 -0500
+
+    to binary working;
+
+commit 68b31e3318455df1ee2d5b366a7fc1959fef052a
+Author: Julie Ann Sojkowski <jas7845@cs.rit.edu>
+Date:   Thu Feb 21 13:42:01 2019 -0500
+
+    Please enter the commit message for your changes. Lines starting
+    Description correc
